@@ -30,13 +30,13 @@ class AVCExtractorGUI:
         self.setup_ui()
     
     def get_base_dir(self):
-    """Trả về thư mục nơi chứa .app (Mac) hoặc .exe (Win) hoặc thư mục code (chạy Python)"""
-    if getattr(sys, 'frozen', False):
-        # Nếu đã build thành .app hoặc .exe
-        return Path(os.path.dirname(sys.executable))
-    else:
-        # Khi chạy bằng python
-        return Path.cwd()
+        """Trả về thư mục nơi chứa .app (Mac) hoặc .exe (Win) hoặc thư mục code (chạy Python)"""
+        if getattr(sys, 'frozen', False):
+            # Nếu đã build thành .app hoặc .exe
+            return Path(os.path.dirname(sys.executable))
+        else:
+            # Khi chạy bằng python
+            return Path.cwd()
     
     def setup_styles(self):
         """Thiết lập style cho Treeview"""
@@ -771,3 +771,4 @@ if __name__ == "__main__":
     except Exception as e:
         messagebox.showerror("Lỗi", f"Đã xảy ra lỗi: {str(e)}")
         sys.exit(1)
+
