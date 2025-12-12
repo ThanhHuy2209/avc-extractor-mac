@@ -1,0 +1,34 @@
+name: Build macOS App
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip install pyinstaller
+
+    - name: Build macOS .app
+      run: |
+        pyinstaller --windowed --noconsole --name "AVC Extractor" main.py
+
+    - name: Upload app as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: AVC-Extractor-macOS
+        path: dist/AVC\ Extractor.app
