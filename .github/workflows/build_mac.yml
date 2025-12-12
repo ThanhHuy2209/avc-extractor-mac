@@ -25,7 +25,7 @@ jobs:
 
     - name: Build macOS .app
       run: |
-        pyinstaller --windowed --noconsole --name "AVC Extractor" main.py
+        pyinstaller --windowed --noconsole --name "AVC Extractor" avc_extractor.py
 
     - name: Upload app as artifact
       uses: actions/upload-artifact@v4
